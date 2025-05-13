@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 23rd Birthday Shivani!</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        // Immediately hide balloon message before page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            var balloonMessage = document.querySelector('.balloon-message');
+            if (balloonMessage) {
+                balloonMessage.style.display = 'none';
+                balloonMessage.style.visibility = 'hidden';
+                balloonMessage.style.opacity = '0';
+                balloonMessage.className += ' hidden';
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="background"></div>
+    <canvas class="birthday-canvas"></canvas>
+    
+    <!-- Floating Elements -->
+    <div id="floating-elements"></div>
+    
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-follower"></div>
+    
+    <!-- Balloon Game -->
+    <div id="balloon-game" class="hidden">
+        <div class="balloon-container"></div>
+        <div class="balloon-message hidden" style="display: none !important; visibility: hidden !important; opacity: 0 !important;">
+            <h2>🎉 Congratulations! 🎉</h2>
+            <p>You popped all 23 balloons!</p>
+            <p>Happy 23rd Birthday Shivani! You are buddi now! 😄</p>
+            <button id="close-balloon-game">Continue</button>
+            <button id="restart-balloon-game">Play Again</button>
+        </div>
+        <button class="close-balloon-game-button" onclick="document.getElementById('balloon-game').classList.add('hidden')">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    
+    <!-- Music Player -->
+    <div class="music-player">
+        <button class="music-toggle"><i class="fas fa-music"></i></button>
+        <div class="track-info">
+            <div class="track-name">Birthday Song</div>
+        </div>
+        
+    </div>
+    
+    <!-- Balloon Game Button -->
+    <div class="balloon-game-button">
+        <button id="start-balloon-game" onclick="startBalloonGame()"><i class="fas fa-birthday-cake"></i> Pop Balloons!</button>
+    </div>
+    
+    <div class="scrollable-header">
+        <div class="title-small">Shivani's 23rd Birthday</div>
+        <div class="header-nav">
+            <a href="#cake-section">Cake</a>
+            <a href="#gallery-section">Gallery</a>
+            <a href="#journey-section">Journey</a>
+            <a href="#videos-section">Videos</a>
+            <a href="#games-section">Games</a>
+            <a href="#wishes-section">Wishes</a>
+            <a href="#special-section">Special</a>
+        </div>
+    </div>
+    
+    <header>
+        <h1 class="title">Happy 23rd Birthday</h1>
+        <h2 class="subtitle">Shivani Gupta</h2>
+        <p class="date">May 13, 2002</p>
+    </header>
+
+    <section id="cake-section" class="cake-section">
+        <div class="section-title">
+            <h2>Blow Out Your Candles!</h2>
+            <p>Click on the cake to interact with it</p>
+        </div>
+        <canvas id="cake-canvas"></canvas>
+    </section>
+
+    <section id="gallery-section" class="photo-gallery">
+        <div class="section-title">
+            <h2>Photo Gallery</h2>
+            <p>Flip through your beautiful memories</p>
+        </div>
+        <div class="gallery-container">
+            <!-- Photos will be added dynamically via JavaScript -->
+        </div>
+    </section>
+    
+    <section id="journey-section" class="journey-section">
+        <div class="section-title">
+            <h2>Shivani's Journey</h2>
+            <p>Celebrating her remarkable achievements</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2019</div>
+                    <h3>Completed 10th Standard</h3>
+                    <p>Successfully completed her 10th standard education with flying colors.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2021</div>
+                    <h3>Completed 12th Standard</h3>
+                    <p>Graduated from high school with excellent academic performance.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2021</div>
+                    <h3>Started College</h3>
+                    <p>Began B.Tech program at Sagar Institute of Research and Technology.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">February 2024</div>
+                    <h3>Started Internship</h3>
+                    <p>Secured an internship as an Android Developer at OnPrice InfoTech Pvt Ltd while in 3rd year of college.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">April 2024</div>
+                    <h3>First Job</h3>
+                    <p>Got a job as an Application Developer at Acore IT Hub where she currently works.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="videos-section" class="videos-section">
+        <div class="section-title">
+            <h2>Story</h2>
+            <p>Precious moments captured in motion</p>
+        </div>
+        <div class="video-story-container">
+            <div class="video-intro">
+                <h3>Our Beautiful Romance</h3>
+                <p>Every moment with you has been a cherished memory in story.</p>
+            </div>
+            <div class="video-cards">
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video poster="assests/First Movie at Jabalpur.jpg" muted loop>
+                            <source src="assests/First Train Trip with shivani and me video.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="video-caption">
+                        <h3>Our First Journey Together</h3>
+                        <p>The way your eyes lit up as we embarked on this journey together is a memory I'll cherish forever. Your laughter, your excitement, and the way you rested your head on my shoulder - these are the moments that make my heart full.</p>
+                        <p class="love-note">"Distance means nothing when someone means everything to you."</p>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video poster="assests/Last birthday of shivani.jpg" muted loop>
+                            <source src="assests/Shivani Cooking video.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="video-caption">
+                        <h3>Cooking With Love</h3>
+                        <p>Watching you cook with such care and love made me realize how lucky I am. The way you put your heart into everything you do, even the simplest of tasks, shows your beautiful nature and the love you have to give.</p>
+                        <p class="love-note">"Food tastes better when it's made with love."</p>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video poster="assests/best walpaper of shivnai.jpg" muted loop>
+                            <source src="assests/First Blood Test video.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="video-caption">
+                        <h3>Supporting Each Other</h3>
+                        <p>In moments of discomfort, your strength shines brightest. Holding your hand that day, I promised myself I would always be by your side - in sickness and in health, in joy and in pain. Your resilience inspires me every day.</p>
+                        <p class="love-note">"I'll hold your hand through any storm."</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section id="games-section" class="games-section">
+        <div class="section-title">
+            <h2>Birthday Games</h2>
+            <p>Have some fun on your special day!</p>
+        </div>
+        <div class="games-container">
+            <div class="game-card" id="puzzle-game">
+                <div class="game-card-bg"></div>
+                <h3>Birthday Puzzle</h3>
+                <p>Solve a puzzle with your photo</p>
+                <button class="play-btn" onclick="startPuzzleGame()">Play</button>
+            </div>
+            <div class="game-card" id="memory-game">
+                <div class="game-card-bg"></div>
+                <h3>Memory Match</h3>
+                <p>Match cards with birthday themes</p>
+                <button class="play-btn" onclick="startMemoryGame()">Play</button>
+            </div>
+            <div class="game-card" id="quiz-game">
+                <div class="game-card-bg"></div>
+                <h3>Birthday Quiz</h3>
+                <p>Test how well you know Shivani</p>
+                <button class="play-btn" onclick="startQuizGame()">Play</button>
+            </div>
+            <div class="game-card" id="balloon-game-card">
+                <div class="game-card-bg"></div>
+                <h3>Balloon Pop</h3>
+                <p>Pop 22 balloons for Shivani's 23rd birthday</p>
+                <button class="play-btn" onclick="startBalloonGame()">Play</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="wishes-section" class="wishes-section">
+        <div class="section-title">
+            <h2>Birthday Wishes</h2>
+            <p>Messages from loved ones</p>
+        </div>
+        <div class="wishes-container">
+            <!-- Wishes will be added dynamically -->
+        </div>
+    </section>
+
+    <section id="special-section" class="special-section">
+        <div class="section-title">
+            <h2>Special Memories</h2>
+            <p>Enter password to unlock</p>
+        </div>
+        <div class="password-container">
+            <input type="password" id="special-password" placeholder="Enter phone password (DDMMYYYY)">
+            <button id="unlock-btn" onclick="checkPassword()">Unlock</button>
+        </div>
+        <div id="special-content" class="hidden">
+            <!-- Protected content will appear here after password is entered -->
+        </div>
+    </section>
+
+    <footer>
+        <a href="memories.html" class="memories-link">View More Memories</a>
+        <p>Created with ❤️ for Shivani's 23rd Birthday</p>
+    </footer>
+
+    <div id="game-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="game-container"></div>
+        </div>
+    </div>
+
+    <div class="section-dots">
+        <!-- Navigation dots will be added dynamically -->
+    </div>
+
+    <!-- Scripts -->
+    <script src="audio-manager.js"></script>
+    <script src="animation.js"></script>
+    <script src="script.js"></script>
+    <script src="gallery.js"></script>
+    <script src="games.js"></script>
+    <script src="balloon-game.js"></script>
+</body>
+</html> 
