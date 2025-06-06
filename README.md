@@ -67,7 +67,7 @@ A beautiful interactive birthday website created for Shivani Gupta's 23rd birthd
 
 ## Password
 
-The password for the special section is Shivani's birthdate: `07092023`
+The password for the special section is 
 
 ## Credits
 
